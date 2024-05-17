@@ -15,30 +15,32 @@ function Encrypt_Caesar($text, $shift)
     $result = '';
     $text = strtoupper($text);
     for ($i = 0; $i < strlen($text); $i++) {
-        if (ctype_alpha($text[$i])) {
-            $char = chr((ord($text[$i]) - 65 + $shift) % 25 + 65);
+        $char =$text[$i];
+        if (ctype_alpha($char)) {
+            $newchar = chr((ord($char) - 65 + $shift) % 26 + 65);
         } else {
-            /*Nothing*/
+            $newchar = $char;
         }
+        $result .= $newchar;
     }
-    $result .= $char;
-    return $result;
+    return strtolower($result);
 }
 //===================================================================================================================
 // =================================Decryption Caeaer================================================================
 function Decrypt_Caesar($text, $shift)
 {
-    $result = '';
+     $result = '';
     $text = strtoupper($text);
     for ($i = 0; $i < strlen($text); $i++) {
-        if (ctype_alpha($text[$i])) {
-            $char = chr((ord($text[$i]) - 65 + $shift + 26) % 25 + 65);
+        $char =$text[$i];
+        if (ctype_alpha($char)) {
+            $newchar = chr(((ord($char) - 65 - $shift + 26) % 26 )+ 65);
         } else {
-            /*Nothing*/
+            $newchar = $char;
         }
+        $result .= $newchar;
     }
-    $result .= $char;
-    return $result;
+    return strtolower($result);
 }
 //===================================================================================================================
 // =================================Encryption Mono==================================================================
